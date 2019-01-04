@@ -7,6 +7,7 @@ import { PagesRoutingModules } from './pages-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { PagesComponent } from './pages.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -17,6 +18,7 @@ import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.co
 @NgModule({
     declarations: [
         PagesComponent,
+        AccountSettingsComponent,
         DashboardComponent,
         Graficas1Component,
         ProgressComponent,
