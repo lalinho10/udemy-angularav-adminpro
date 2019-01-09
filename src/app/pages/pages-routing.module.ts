@@ -6,6 +6,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { ProgressComponent } from './progress/progress.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 const PAGES_ROUTES: Routes = [
     {
@@ -13,10 +15,12 @@ const PAGES_ROUTES: Routes = [
         component: PagesComponent,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'account-settings', component: AccountSettingsComponent },
-            { path: 'dashboard', component: DashboardComponent },
-            { path: 'graficas1', component: Graficas1Component },
-            { path: 'progress', component: ProgressComponent },
+            { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Configuración' } },
+            { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
+            { path: 'graficas1', component: Graficas1Component, data: { title: 'Gráficas' } },
+            { path: 'progress', component: ProgressComponent, data: { title: 'Progress' } },
+            { path: 'promesas', component: PromesasComponent, data: { title: 'Promesas' } },
+            { path: 'rxjs', component: RxjsComponent, data: { title: 'Observable' } }
         ]
     },
 ];
