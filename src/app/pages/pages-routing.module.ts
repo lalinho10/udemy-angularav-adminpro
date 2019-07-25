@@ -9,10 +9,13 @@ import { ProgressComponent } from './progress/progress.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 
+import { AuthenticationGuard } from 'src/app/services/guards/authetincation.guard';
+
 const PAGES_ROUTES: Routes = [
     {
         path: 'pages',
         component: PagesComponent,
+        canActivate: [ AuthenticationGuard ],
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Configuración' } },

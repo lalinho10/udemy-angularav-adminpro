@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SidebarService } from '../../services/sidebar.service.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { SidebarService } from 'src/app/services/sidebar.service.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,9 +11,16 @@ import { SidebarService } from '../../services/sidebar.service.service';
 
 export class SidebarComponent implements OnInit {
 
-  constructor( public sidebarService: SidebarService ) {}
+  constructor(
+    private autheticationService: AuthenticationService,
+    public sidebarService: SidebarService
+  ) {}
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.autheticationService.logoutUser();
   }
 
 }
