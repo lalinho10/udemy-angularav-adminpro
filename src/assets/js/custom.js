@@ -5,6 +5,24 @@ Email: niravjoshi87@gmail.com
 File: js
 */
 
+function init_dropify() {
+    var $dropify = $('.dropify').dropify({
+        messages: {
+            'default': 'Haz clic o arrastra una imagen',
+            'replace': 'Haz clic o arrastra una imagen para modificar imagen',
+            'remove': 'Cancelar',
+            'error': 'Error. Validar tipo y tamaño de archivo'
+        },
+        tpl: {
+            message: '<div class="dropify-message"><span class="file-icon" /><p class="text-center">{{ default }}</p></div>'
+        }
+    });
+
+    $dropify.on('dropify.beforeClear', function(event, element) {
+        return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+    });
+}
+
 function init_plugins() {
 
     $(function() {

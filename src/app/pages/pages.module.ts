@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { ChartsModule } from 'ng2-charts';
 
 import { PagesRoutingModules } from './pages-routing.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { PagesComponent } from './pages.component';
@@ -14,8 +16,9 @@ import { ProgressComponent } from './progress/progress.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 
-import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
+import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +30,8 @@ import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.co
         PromesasComponent,
         RxjsComponent,
         IncrementadorComponent,
-        GraficoDonaComponent
+        GraficoDonaComponent,
+        ProfileComponent
     ],
     exports: [
         PagesComponent,
@@ -38,10 +42,12 @@ import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.co
         GraficoDonaComponent
     ],
     imports: [
+        CommonModule,
         FormsModule,
         ChartsModule,
         PagesRoutingModules,
-        SharedModule
+        SharedModule,
+        PipesModule
     ]
 })
 

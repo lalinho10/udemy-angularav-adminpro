@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-declare function init_plugins();
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-page-not-fount',
@@ -8,12 +6,8 @@ declare function init_plugins();
   styles: []
 })
 
-export class PageNotFountComponent implements OnInit {
+export class PageNotFountComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-    init_plugins();
-  }
+  constructor() {}
 
 }

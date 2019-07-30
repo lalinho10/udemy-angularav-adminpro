@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class AuthenticationService {
+
   private apiHost = environment.restApiHost;
 
   constructor(
@@ -23,23 +24,23 @@ export class AuthenticationService {
   ) {}
 
   loginUser( appuser: Appuser, rememberme: boolean ): Observable<Object> {
-    const apiRequest: Observable<Object> = this.http.post( `${ this.apiHost }/login`, appuser );
+    const reqObservable: Observable<Object> = this.http.post( `${ this.apiHost }/login`, appuser );
 
-    apiRequest.subscribe( ( response ) => {
+    reqObservable.subscribe( ( response ) => {
       this.storageService.setLoginResponseLocalStorage( response, rememberme );
     });
 
-    return apiRequest;
+    return reqObservable;
   }
 
   loginGoogleUser( idToken: string ): Observable<Object> {
-    const apiRequest: Observable<Object> = this.http.post( `${ this.apiHost }/login/google`, { idToken } );
+    const reqObservable: Observable<Object> = this.http.post( `${ this.apiHost }/login/google`, { idToken } );
 
-    apiRequest.subscribe( ( response ) => {
+    reqObservable.subscribe( ( response ) => {
       this.storageService.setLoginResponseLocalStorage( response );
     });
 
-    return apiRequest;
+    return reqObservable;
   }
 
   isUserAuthenticated(): boolean {
@@ -49,11 +50,18 @@ export class AuthenticationService {
   logoutUser() {
     if ( this.storageService.isGoogleUser() ) {
       console.log( 'Usuario de google' );
+      this.googleSignout();
     }
 
     this.storageService.clearLocalStorage();
 
     this.router.navigate( [ '/login' ] );
+  }
+
+  private googleSignout() {
+    /*this.googleService.auth2.signOut().then( function () {
+      console.log('User signed out.');
+    });*/
   }
 
 }

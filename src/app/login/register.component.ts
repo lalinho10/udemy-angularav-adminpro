@@ -8,8 +8,6 @@ import { DifferentPasswordValidator } from 'src/app/core/validators/different-pa
 import { Appuser } from 'src/app/models/appuser';
 import { UserService } from 'src/app/services/user/user.service';
 
-declare function init_plugins();
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -26,7 +24,6 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    init_plugins();
     this.createForm();
   }
 

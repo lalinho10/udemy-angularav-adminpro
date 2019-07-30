@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -6,7 +6,6 @@ import { Appuser } from 'src/app/models/appuser';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
-declare function init_plugins();
 declare const gapi: any;
 
 @Component({
@@ -22,12 +21,12 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private ngZone: NgZone,
     private router: Router,
     private storageService: StorageService
   ) {}
 
   ngOnInit() {
-    init_plugins();
     this.init_google();
 
     this.email = this.storageService.checkRememberme();
@@ -47,11 +46,13 @@ export class LoginComponent implements OnInit {
   }
 
   attachSignin( element ) {
-    this.auth2.attachClickHandler( element, {},  ( googleUser ) => {
+    this.auth2.attachClickHandler( element, {}, ( googleUser ) => {
       const id_token = googleUser.getAuthResponse().id_token;
 
-      this.authenticationService.loginGoogleUser( id_token ).subscribe( () => {
-        this.router.navigate( [ '/pages/dashboard' ] );
+      this.ngZone.run( () => {
+        this.authenticationService.loginGoogleUser( id_token ).subscribe( () => {
+          this.router.navigate( [ '/pages/dashboard' ] );
+        });
       });
     }, ( error ) => {
       console.error( JSON.stringify( error, undefined, 2 ) );
