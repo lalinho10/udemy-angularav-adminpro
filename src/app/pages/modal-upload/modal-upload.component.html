@@ -1,0 +1,28 @@
+<div class="modal-overlay animated fadeIn" [ngClass]="modalUploadService.modalStatus">
+    <div class="modal" style="display: block" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Carga de imágenes</h5>
+                    <button (click)="closeModal()" type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <h4 class="card-title">Imagen</h4>
+                                <input (change)="selectFile( $event.target.files[ 0 ] )" type="file" id="input-file-now" class="dropify" accept=".png, .jpg, .jpeg, .gif" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="updateImage()" [disabled]="!image" type="button" class="btn btn-primary">Guardar</button>
+                    <button (click)="closeModal()" type="button" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

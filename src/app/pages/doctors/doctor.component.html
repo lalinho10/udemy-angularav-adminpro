@@ -1,0 +1,59 @@
+<div *ngIf="doctor" class="row animated fadeIn">
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Foto del médico</h4>
+                <div [ngClass]="{ 'hide': isUpdating }">
+                    <img (click)="updateImage()" [src]="doctor.image | image: token: 'doctors'" class="img-circle pointer" width="150">
+                </div>
+                <form [ngClass]="{ 'hide': !isUpdating }">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input (change)="selectFile( $event.target.files[ 0 ] )" type="file" id="input-file-now" class="dropify" accept=".png, .jpg, .jpeg, .gif" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button (click)="updateDoctorImage()" class="btn btn-success">Actualizar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="saveDoctor( f )" class="form-horizontal form-material">
+                    <div class="form-group">
+                        <label class="col-md-12">Nombre del médico</label>
+                        <div class="col-md-12">
+                            <input [(ngModel)]="doctor.name" name="name" type="text" placeholder="Nombre del médico" class="form-control form-control-line" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12">Hospital</label>
+                        <div class="col-md-12">
+                            <select (change)="changeHospital( $event.target.value )" [(ngModel)]="doctor.hospitalId" name="hospital" class="form-control" required>
+                                <option value="">Seleccione un hospital</option>
+                                <option *ngFor="let h of hospitals" [value]="h._id">{{ h.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>&nbsp;Guardar
+                    </button>
+                    <button [routerLink]="['/pages/doctors']" class="btn btn-inverse waves-effect waves-light">Regresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Hospital</h4>
+                <img [src]="hospital.image | image: token: 'hospitals'" class="img-circle" width="150">
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,6 +27,10 @@ export class StorageService {
     return this.appuserEmitter.asObservable();
   }
 
+  getStorageId(): string | null {
+    return localStorage.getItem( 'id' );
+  }
+
   getStorageToken(): string | null {
     return localStorage.getItem( 'token' );
   }

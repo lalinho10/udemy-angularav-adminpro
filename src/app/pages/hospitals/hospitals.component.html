@@ -1,0 +1,75 @@
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <input #txtSearch (keyup)="searchHospital( txtSearch.value )" type="text" class="form-control" placeholder="Buscar hospital">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="alert alert-info text-center">
+            <i class="fa fa-spin fa-refresh"></i>
+            <p>Cargando...</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!loading" class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <button (click)="createHospital()" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus"></i> Crear hospital
+                </button>
+                <h3>Hospitales registrados<small> ( {{ total }} ) </small></h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Hospital</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitals">
+                            <td>
+                                <img (click)="updateHospitalImage( hospital._id )" [src]="hospital.image | image: token : 'hospitals'" width="60">
+                            </td>
+                            <td>
+                                <input [(ngModel)]="hospital.name" name="name" type="text" class="form-control">
+                            </td>
+                            <td>
+                                <button (click)="updateHospital( hospital )" class="btn btn-primary">
+                                    <i class="fa fa-save"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button (click)="confirmDeleteHospital( hospital )" class="btn btn-danger">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" class="text-right">
+                                <span>Hospitales {{ from }} - {{ to }} de {{ total }}</span>&nbsp;
+                                <button (click)="goTo( page - 1 )" [disabled]="page <= 1" class="btn btn-outline-secondary">
+                                    <i class="fa fa-angle-left"></i>
+                                </button>&nbsp;
+                                <span>Página {{ page }}</span>&nbsp;
+                                <button (click)="goTo( page + 1 )" [disabled]="isLastPage" class="btn btn-outline-secondary">
+                                    <i class="fa fa-angle-right"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

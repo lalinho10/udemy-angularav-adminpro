@@ -1,0 +1,66 @@
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <input #txtSearch (keyup)="searchDoctor( txtSearch.value )" type="text" class="form-control" placeholder="Buscar médico">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!loading" class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <button [routerLink]="['/pages/doctor', 'new']" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus"></i> Crear médico
+                </button>
+                <h3>Hospitales registrados<small> ( {{ total }} ) </small></h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Médico</th>
+                            <th>Hospital</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let doctor of doctors">
+                            <td>
+                                <img [src]="doctor.image | image: token : 'doctors'" width="60">
+                            </td>
+                            <td>{{ doctor.name }}</td>
+                            <td>{{ doctor.hospital.name }}</td>
+                            <td>
+                                <button [routerLink]="['/pages/doctor', doctor._id]" class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button (click)="confirmDeleteDoctor( doctor )" class="btn btn-danger">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-right">
+                                <span>Hospitales {{ from }} - {{ to }} de {{ total }}</span>&nbsp;
+                                <button (click)="goTo( page - 1 )" [disabled]="page <= 1" class="btn btn-outline-secondary">
+                                    <i class="fa fa-angle-left"></i>
+                                </button>&nbsp;
+                                <span>Página {{ page }}</span>&nbsp;
+                                <button (click)="goTo( page + 1 )" [disabled]="isLastPage" class="btn btn-outline-secondary">
+                                    <i class="fa fa-angle-right"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

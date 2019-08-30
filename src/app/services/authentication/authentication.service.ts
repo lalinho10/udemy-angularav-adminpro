@@ -49,7 +49,6 @@ export class AuthenticationService {
 
   logoutUser() {
     if ( this.storageService.isGoogleUser() ) {
-      console.log( 'Usuario de google' );
       this.googleSignout();
     }
 

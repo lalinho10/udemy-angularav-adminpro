@@ -34,7 +34,8 @@
                                 <strong>Nombre</strong><br>
                                 <p class="text-muted">
                                     {{ user.name }}&nbsp;
-                                    <span *ngIf="user.role == 'ADMIN_ROLE'"><i class="fa fa-user"></i></span>&nbsp;
+                                    <span><i class="fa fa-user"></i></span>&nbsp;
+                                    <span *ngIf="user.role == 'ADMIN_ROLE'"><i class="fa fa-shield"></i></span>&nbsp;
                                     <span *ngIf="user.google"><i class="fa fa-google-plus"></i></span>
                                 </p>
                             </div>

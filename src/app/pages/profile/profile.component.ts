@@ -14,8 +14,7 @@ declare function init_dropify();
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styles: []
+  templateUrl: './profile.component.html'
 })
 
 export class ProfileComponent implements OnInit, OnDestroy {

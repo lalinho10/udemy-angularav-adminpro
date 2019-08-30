@@ -11,10 +11,7 @@ export class GoogleService {
   auth2: any;
 
   constructor() {
-    console.log(this.auth2);
-    console.log('Iniciando servicio de google');
     this.init_google_signin();
-    console.log(this.auth2);
   }
 
   init_google_signin() {

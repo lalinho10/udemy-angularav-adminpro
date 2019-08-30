@@ -19,7 +19,7 @@ export class ImagePipe implements PipeTransform {
       return `${ environment.restApiHost }/images/${ type }/noimage?token=${ token }`;
     }
 
-    if ( type === 'users' && this.storageService.isGoogleUser() ) {
+    if ( type === 'users' && image.indexOf( 'http' ) >= 0 ) {
       return image;
     }
 
